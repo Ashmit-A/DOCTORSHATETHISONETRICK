@@ -2,19 +2,9 @@ import React from "react";
 import { FaSearch, FaComments, FaHome } from "react-icons/fa";
 import "./Home.css";  // Import the CSS file
 import ListingCard from "../components/ListingCard";
-import { useEffect, useState } from "react";
-
 
 const Home = () => {
 
-  const [listings, setListings] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/listings")
-      .then(res => res.json())
-      .then(data => setListings(data))
-      .catch(err => console.error("Failed to fetch listings:", err));
-  }, []);
   return (
     <div className="landing-container">
       {/* 1. Hero Section */}
@@ -151,18 +141,8 @@ const Home = () => {
       <section className="featured-listings">
         <h2>Featured Listings</h2>
         <div className="listings-container">
-          {listings.map((listing, index) => (
-            <ListingCard
-              key={index}
-              image={listing.image}
-              bhk={listing.bhk}
-              rent={listing.rent}
-              title={listing.title}
-              address={listing.address}
-              furnished={listing.furnished}
-              link={listing.link}
-            />
-          ))}
+          <ListingCard />
+          <ListingCard />
         </div>
       </section>
 
