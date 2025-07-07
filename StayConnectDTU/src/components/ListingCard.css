@@ -1,0 +1,70 @@
+.listing-card {
+  min-width: 280px;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.listing-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.listing-info-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.listing-card h3 {
+  font-size: 1.1rem;
+  color: #111827;
+  margin-bottom: 0.3rem;
+}
+
+.address {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 0.2rem;
+}
+
+.furnishing {
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+}
+
+.listing-card button {
+  background-color: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.listing-card button:hover {
+  background-color: #3b82f6;
+}
+.listing-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+.listing-card-link:hover .listing-card {
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+  transform: translateY(-4px);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}

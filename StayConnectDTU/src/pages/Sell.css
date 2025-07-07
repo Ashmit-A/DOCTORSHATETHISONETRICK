@@ -1,0 +1,163 @@
+/* Sell.css */
+
+.sell-page {
+  font-family: 'Roboto', sans-serif;
+  color: #1e40af;
+  background-color: #f9fafb;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 100px);
+  box-sizing: border-box;
+}
+
+.sell-page h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.sell-form {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sell-form input[type="text"],
+.sell-form input[type="url"] {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #374151;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.sell-form input[type="text"]:focus,
+.sell-form input[type="url"]:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Submit button styles */
+.sell-form button[type="submit"] {
+  background-color: #1e40af;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.sell-form button[type="submit"]:hover:not(:disabled) {
+  background-color: #1e3a8a;
+}
+
+.sell-form button[type="submit"]:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+
+/* --- Custom Message Modal Styles --- */
+.message-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.message-modal-content {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+  border-left: 8px solid;
+}
+
+.message-modal-overlay.success .message-modal-content {
+  border-color: #22c55e;
+}
+
+.message-modal-overlay.error .message-modal-content {
+  border-color: #ef4444;
+}
+
+.message-modal-content p {
+  font-size: 1.15rem;
+  color: #334155;
+  margin-bottom: 25px;
+}
+
+.message-modal-button {
+  background-color: #1e40af;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.message-modal-button:hover {
+  background-color: #1e3a8a;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+  .sell-page {
+    padding: 20px 15px;
+  }
+
+  .sell-page h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+
+  .sell-form {
+    padding: 25px;
+    gap: 15px;
+  }
+
+  .sell-form input[type="text"],
+  .sell-form input[type="url"] {
+    padding: 12px 15px;
+    font-size: 0.95rem;
+  }
+
+  .message-modal-content {
+    padding: 25px 30px;
+  }
+
+  .message-modal-content p {
+    font-size: 1rem;
+  }
+}

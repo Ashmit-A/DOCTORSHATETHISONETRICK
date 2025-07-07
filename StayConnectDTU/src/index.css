@@ -1,0 +1,11 @@
+/* Reset & base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  font-family:'Roboto', sans-serif; /* Optional clean font */
+}
