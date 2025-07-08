@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import useAuthStore from "../store/authStore";
 import toast from "react-hot-toast";
+import { validateEmail, getEmailValidationState } from "../utils/validation";
 import "./Login.css";
 
 export default function Login({ setShowLogin, showLogin }) {
@@ -10,6 +11,11 @@ export default function Login({ setShowLogin, showLogin }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [isFormLoading, setIsFormLoading] = useState(false); // Local loading state for form
+  const [emailValidation, setEmailValidation] = useState({
+    isValid: null,
+    error: null,
+    showError: false
+  });
 
   const { login, registerUser, error, clearError, isAuthenticated } = useAuthStore();
 
@@ -38,9 +44,27 @@ export default function Login({ setShowLogin, showLogin }) {
     }
   }, [isAuthenticated, setShowLogin]);
 
+  // Handle email validation on change
+  const handleEmailChange = (e) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    
+    // Update validation state
+    const validationState = getEmailValidationState(newEmail);
+    setEmailValidation(validationState);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsFormLoading(true);
+    
+    // Validate email before submission
+    const emailValidationResult = validateEmail(email);
+    if (!emailValidationResult.isValid) {
+      toast.error(emailValidationResult.error);
+      setIsFormLoading(false);
+      return;
+    }
     
     if (state === "login") {
       if (!email || !password) {
@@ -77,6 +101,11 @@ export default function Login({ setShowLogin, showLogin }) {
     setName("");
     setEmail("");
     setPassword("");
+    setEmailValidation({
+      isValid: null,
+      error: null,
+      showError: false
+    });
     clearError();
   };
 
@@ -115,14 +144,19 @@ export default function Login({ setShowLogin, showLogin }) {
           </span>
           <input 
             value={email} 
-            onChange={e => setEmail(e.target.value)} 
+            onChange={handleEmailChange}
             type="email" 
             placeholder="Email id" 
-            className="login-input" 
+            className={`login-input ${emailValidation.showError ? 'login-input-error' : ''}`}
             required 
             disabled={isFormLoading}
           />
         </div>
+        {emailValidation.showError && (
+          <div className="login-error-message">
+            {emailValidation.error}
+          </div>
+        )}
         <div className="login-input-group">
           <span className="login-icon">
             {/* Password SVG */}
@@ -144,7 +178,7 @@ export default function Login({ setShowLogin, showLogin }) {
         <button 
           type="submit" 
           className="login-submit" 
-          disabled={isFormLoading}
+          disabled={isFormLoading || (emailValidation.showError && !emailValidation.isValid)}
         >
           {isFormLoading ? "Loading..." : (state === "login" ? "Login" : "Sign Up")}
         </button>

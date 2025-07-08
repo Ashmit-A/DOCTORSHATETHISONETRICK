@@ -21,7 +21,6 @@ const Dashboard = () => {
                     </div>
                     <div className="user-details">
                         <p><strong>Email:</strong> {user?.email}</p>
-                        <p><strong>User ID:</strong> {user?.id}</p>
                         {user?.is_admin && (
                             <p><strong>Role:</strong> Administrator</p>
                         )}

@@ -10,7 +10,6 @@ const registerUser = async (req, res) => {
         }
 
         const existingUser = await sqldb`SELECT * FROM users WHERE email = ${email.toLowerCase()}`;
-        console.log(existingUser);
         if (existingUser.length > 0) {
             return res.status(400).json({ success: false, message: 'User already exists', user:{email:email.toLowerCase()} });
         }
@@ -37,6 +36,7 @@ const registerUser = async (req, res) => {
                 id: result[0].id,
                 name, 
                 email: email.toLowerCase(),
+                is_verified: result[0].is_verified || false,
                 is_admin: result[0].is_admin || false
             }
         });
@@ -85,6 +85,7 @@ const loginUser = async (req, res) => {
                 id: user.id, 
                 name: user.name, 
                 email: user.email.toLowerCase(), 
+                is_verified: user.is_verified || false,
                 is_admin: user.is_admin 
             }
         });
@@ -112,7 +113,7 @@ const logoutUser = async (req, res) => {
 const getUser = async (req, res) => {
     try {
         // console.log(req.user);
-        const user = await sqldb`SELECT id, name, email, is_admin FROM users WHERE id = ${req.user.id}`;
+        const user = await sqldb`SELECT id, name, email, is_verified, is_admin FROM users WHERE id = ${req.user.id}`;
         res.status(200).json({ success: true, user: user[0] });
     } catch (error) {
         console.error('Error getting user', error);

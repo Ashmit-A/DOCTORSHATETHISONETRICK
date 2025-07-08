@@ -64,7 +64,6 @@ const DashboardNavbar = () => {
           {dashboardTabs.map((tab) => (
             <li key={tab.path} className={isActive(tab.path) ? 'active' : ''}>
               <Link to={tab.path} onClick={closeMenu}>
-                <span className="tab-icon">{tab.icon}</span>
                 <span className="tab-name">{tab.name}</span>
               </Link>
             </li>

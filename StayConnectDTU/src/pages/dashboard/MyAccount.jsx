@@ -1,6 +1,7 @@
 import React from 'react';
 import useAuthStore from '../../store/authStore';
 import './DashboardPages.css';
+import AdminFeatures from '../../components/AdminFeatures';
 
 const MyAccount = () => {
   const { user } = useAuthStore();
@@ -20,7 +21,16 @@ const MyAccount = () => {
               <span className="avatar-text">{user?.name?.charAt(0) || 'U'}</span>
             </div>
             <div className="profile-details">
-              <h4>{user?.name || 'User Name'}</h4>
+              <div className="profile-name-section">
+                <h4>{user?.name || 'User Name'}</h4>
+                {user?.is_verified && (
+                  <span className="verified-badge" title="Verified Account">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </span>
+                )}
+              </div>
               <p>{user?.email || 'user@example.com'}</p>
               {user?.is_admin && (
                 <span className="admin-badge">Administrator</span>
@@ -46,27 +56,7 @@ const MyAccount = () => {
             </div>
           </div>
         </div>
-        {user?.is_admin && <div className="account-section">
-          <h3>Manage website</h3>
-          <div className="settings-list">
-            <div className="setting-item">
-              <span>Users</span>
-              <button className="secondary-button">Edit</button>
-            </div>
-            <div className="setting-item">
-              <span>Listings</span>
-              <button className="secondary-button">Change</button>
-            </div>
-            <div className="setting-item">
-              <span>Essentials</span>
-              <button className="secondary-button">Configure</button>
-            </div>
-            <div className="setting-item">
-              <span>Roommates</span>
-              <button className="secondary-button">Configure</button>
-            </div>
-          </div>
-        </div>}
+        {user?.is_admin && <AdminFeatures />}
       </div>
     </div>
   );

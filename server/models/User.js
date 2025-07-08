@@ -8,6 +8,7 @@ async function initUserTable() {
         name VARCHAR(100) NOT NULL,
         email VARCHAR(100) PRIMARY KEY NOT NULL,
         password VARCHAR(100) NOT NULL,
+        is_verified BOOLEAN DEFAULT FALSE,
         is_admin BOOLEAN DEFAULT FALSE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );`;

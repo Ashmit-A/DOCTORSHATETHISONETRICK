@@ -182,3 +182,50 @@
   box-shadow: 0 0 0 2px #c7d2fe;
   border-radius: 6px;
 }
+
+/* Email validation error styles */
+.login-input-error {
+  color: #dc2626 !important;
+}
+
+.login-input-group:has(.login-input-error) {
+  border: 1.5px solid #dc2626;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.10);
+}
+
+.login-input-group:has(.login-input-error):focus-within {
+  border: 1.5px solid #dc2626;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.15);
+}
+
+.login-error-message {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-align: left;
+  padding-left: 1.5rem;
+  animation: errorSlideIn 0.2s ease-out;
+}
+
+@keyframes errorSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Disabled submit button styles */
+.login-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: linear-gradient(90deg, #9ca3af 0%, #6b7280 100%);
+}
+
+.login-submit:disabled:hover {
+  opacity: 0.6;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.10);
+}

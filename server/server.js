@@ -27,6 +27,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(helmet());
 
+// Initialize database tables
+// initListingsTable();
+initUserTable();
+
 // Temporarily disable arcjet to test CORS
 app.use(async (req, res, next) => {
     try {
@@ -59,11 +63,6 @@ app.get('/', (req, res) => {
 app.use('/api/users', usersRouter);
 app.use('/admin', adminRouter);
 // app.use('/api/listings', listingsRouter);
-
-// Initialize database tables
-// initListingsTable();
-initUserTable();
-
 // Start server
 app.listen(PORT, () => {
     console.log('Server is running on port 3000');
